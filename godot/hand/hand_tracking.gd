@@ -39,7 +39,13 @@ func _process(_delta: float) -> void:
 		var hands_data = _parse_hands_from_packet(data)
 		
 		if hands_data["left"] != null:
+			left_hand.show()
 			left_hand.parse_hand_landmarks_from_data(hands_data["left"])
+		else:
+			left_hand.hide()
 			
 		if hands_data["right"] != null:
+			right_hand.show()
 			right_hand.parse_hand_landmarks_from_data(hands_data["right"])
+		else:
+			right_hand.hide()

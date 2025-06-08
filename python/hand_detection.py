@@ -59,9 +59,9 @@ def extract_left_right_hand_coords(
     if multi_hand_landmarks is None:
         return hand_coords
     
-    for hand_type in ["left", "right"]:
+    for hand_type in ("left", "right"):
         hand_idx = extract_hand_type_index(multi_handedness, hand_type)
-
+        
         if hand_idx == -1:
             continue
 
@@ -70,7 +70,7 @@ def extract_left_right_hand_coords(
         hand_coords[hand_type] = [
             [landmark.x, landmark.y, landmark.z] for landmark in hand_lms.landmark
         ]
-
+    print(hand_coords)
     return hand_coords
 
 
@@ -89,7 +89,7 @@ def run_hand_tracking_server(
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     # Open the webcam video feed
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
 
     # Create the hand-tracking model
     with mp_hands.Hands(
